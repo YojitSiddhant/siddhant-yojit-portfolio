@@ -1,6 +1,16 @@
-import Link from "next/link";
 import HomeClock from "./components/home-clock";
+import ScrollSideNav from "./components/scroll-side-nav";
 import TypewriterName from "./components/typewriter-name";
+
+const navItems = [
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/education", label: "Education" },
+  { href: "/certifications", label: "Certifications" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Home() {
   return (
@@ -20,26 +30,7 @@ export default function Home() {
               <HomeClock />
             </div>
 
-            <aside className="hero-side" aria-label="Primary navigation">
-              <Link className="hero-side-link" style={{ "--stagger": 0 } as React.CSSProperties} href="/work">
-                Work
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 1 } as React.CSSProperties} href="/projects">
-                Projects
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 2 } as React.CSSProperties} href="/skills">
-                Skills
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 3 } as React.CSSProperties} href="/education">
-                Education
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 4 } as React.CSSProperties} href="/certifications">
-                Certifications
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 5 } as React.CSSProperties} href="/contact">
-                Contact
-              </Link>
-            </aside>
+            <ScrollSideNav items={navItems} />
 
           </div>
         </section>

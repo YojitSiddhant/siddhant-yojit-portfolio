@@ -1,11 +1,10 @@
-import Link from "next/link";
+import ScrollSideNav from "../components/scroll-side-nav";
 
 const education = [
   {
     level: "Master of Computer Applications",
     institution: "PES University",
     period: "2024 - 2026",
-    result: "Currently Pursuing | Current Overall CGPA: 5.99/10",
     location: "Bangalore, Karnataka, India",
     notes: [],
   },
@@ -13,7 +12,6 @@ const education = [
     level: "Bachelor of Computer Applications",
     institution: "New Horizon College",
     period: "2020 - 2023",
-    result: "CGPA: 7.59/10",
     location: "Bangalore, Karnataka, India",
     notes: [],
   },
@@ -21,7 +19,6 @@ const education = [
     level: "Class XII",
     institution: "St Francis PU College",
     period: "2019 - 2020",
-    result: "61.33%",
     location: "Bangalore, Karnataka, India",
     notes: [],
   },
@@ -29,10 +26,19 @@ const education = [
     level: "Class X",
     institution: "Narayana e-Techno School",
     period: "2016 - 2017",
-    result: "CGPA: 10/10",
     location: "Bangalore, Karnataka, India",
     notes: [],
   },
+];
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/certifications", label: "Certifications" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function EducationPage() {
@@ -60,7 +66,6 @@ export default function EducationPage() {
                         <h2 className="projects-gallery-title">{item.level}</h2>
                         <p className="work-home-meta">{item.institution}</p>
                         <p className="work-home-meta">{item.location}</p>
-                        <p className="projects-gallery-stack">{item.result}</p>
                         {item.notes.length > 0 ? (
                           <div className="work-home-project-copy">
                             {item.notes.map((note) => (
@@ -77,26 +82,7 @@ export default function EducationPage() {
               </section>
             </div>
 
-            <aside className="hero-side" aria-label="Primary navigation">
-              <Link className="hero-side-link" style={{ "--stagger": 0 } as React.CSSProperties} href="/">
-                Home
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 1 } as React.CSSProperties} href="/work">
-                Work
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 2 } as React.CSSProperties} href="/projects">
-                Projects
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 3 } as React.CSSProperties} href="/skills">
-                Skills
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 4 } as React.CSSProperties} href="/certifications">
-                Certifications
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 5 } as React.CSSProperties} href="/contact">
-                Contact
-              </Link>
-            </aside>
+            <ScrollSideNav items={navItems} />
 
           </div>
 

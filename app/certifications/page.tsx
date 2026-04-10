@@ -1,47 +1,47 @@
-import Link from "next/link";
+import ScrollSideNav from "../components/scroll-side-nav";
 
 const certificates = [
   {
     title: "ChatGPT for Excel",
-    category: "AI Productivity",
-    href: "/certificates/chatgpt-for-excel.pdf",
+    issuer: "Great Learning Academy",
+    subject: "AI productivity for Excel workflows",
   },
   {
     title: "ChatGPT for HR",
-    category: "AI Productivity",
-    href: "/certificates/chatgpt-for-hr.pdf",
-  },
-  {
-    title: "Class 12 Marks Card",
-    category: "Academic Record",
-    href: "/certificates/class-12-marks-card.pdf",
+    issuer: "Great Learning Academy",
+    subject: "AI productivity for HR tasks and workflow support",
   },
   {
     title: "Data Visualisation with Power BI",
-    category: "Analytics",
-    href: "/certificates/data-visualisation-with-power-bi.pdf",
+    issuer: "Great Learning Academy",
+    subject: "Data analysis and dashboard visualisation",
   },
   {
     title: "Digital Marketing",
-    category: "Marketing",
-    href: "/certificates/digital-marketing.pdf",
-  },
-  {
-    title: "Fraudulent Detection in Online Market Place",
-    category: "Project Certificate",
-    href: "/certificates/fraudulent-detection-in-online-market-place.pdf",
+    issuer: "Great Learning Academy",
+    subject: "Digital marketing fundamentals",
   },
   {
     title: "Google Bard for Microsoft PowerPoint",
-    category: "AI Productivity",
-    href: "/certificates/google-bard-for-microsoft-powerpoint.pdf",
+    issuer: "Great Learning Academy",
+    subject: "AI productivity for presentation workflows",
   },
   {
     title: "HTML",
-    category: "Web Development",
-    href: "/certificates/html-certificate.pdf",
+    issuer: "Great Learning Academy",
+    subject: "Frontend web development fundamentals",
   },
 ] as const;
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/education", label: "Education" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function CertificationsPage() {
   return (
@@ -55,29 +55,21 @@ export default function CertificationsPage() {
                   <p className="work-home-label work-page-label">Certifications</p>
                   <h1 className="work-home-title">Training, academic records, and skill credentials.</h1>
                   <p className="work-home-summary">
-                    A selected collection of certificates and academic documents that reflect my work across web
-                    development, AI tools, analytics, and marketing.
+                    A clean overview of the training programs, certifications, and academic credentials that support my
+                    background in web development, AI tools, analytics, and marketing.
                   </p>
                 </header>
 
                 <section className="certifications-grid" aria-label="Certificate list">
                   {certificates.map((certificate) => (
-                    <article className="certification-card" key={certificate.href}>
-                      <p className="certification-category">{certificate.category}</p>
+                    <article className="certification-card" key={certificate.title}>
+                      <p className="certification-category">Issued By</p>
+                      <p className="work-home-meta">{certificate.issuer}</p>
                       <h2 className="certification-title">{certificate.title}</h2>
-                      <p className="certification-copy">PDF document available for preview or direct download.</p>
-                      <div className="certification-actions">
-                        <a
-                          className="certification-link"
-                          href={certificate.href}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View PDF
-                        </a>
-                        <a className="certification-link certification-link-secondary" href={certificate.href} download>
-                          Download
-                        </a>
+                      <div className="work-home-project-copy">
+                        <p className="projects-gallery-point">
+                          <strong>Subject:</strong> {certificate.subject}
+                        </p>
                       </div>
                     </article>
                   ))}
@@ -85,26 +77,7 @@ export default function CertificationsPage() {
               </section>
             </div>
 
-            <aside className="hero-side" aria-label="Primary navigation">
-              <Link className="hero-side-link" style={{ "--stagger": 0 } as React.CSSProperties} href="/">
-                Home
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 1 } as React.CSSProperties} href="/work">
-                Work
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 2 } as React.CSSProperties} href="/projects">
-                Projects
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 3 } as React.CSSProperties} href="/skills">
-                Skills
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 4 } as React.CSSProperties} href="/education">
-                Education
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 5 } as React.CSSProperties} href="/contact">
-                Contact
-              </Link>
-            </aside>
+            <ScrollSideNav items={navItems} />
 
           </div>
 

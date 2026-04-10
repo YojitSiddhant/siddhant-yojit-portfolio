@@ -1,5 +1,14 @@
-import Link from "next/link";
-import ContactForm from "../components/contact-form";
+import ScrollSideNav from "../components/scroll-side-nav";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/education", label: "Education" },
+  { href: "/certifications", label: "Certifications" },
+];
 
 export default function ContactPage() {
   return (
@@ -19,17 +28,6 @@ export default function ContactPage() {
 
                 <section className="work-home-section">
                   <div className="projects-gallery">
-                    <article className="projects-gallery-card contact-form-panel">
-                      <p className="projects-gallery-meta">Send A Message</p>
-                      <h2 className="projects-gallery-title">Contact Form</h2>
-                      <p className="work-home-summary contact-form-summary">
-                        Clients can send a message here and it will appear inside your admin panel inbox.
-                      </p>
-                      <div className="contact-form-wrap">
-                        <ContactForm />
-                      </div>
-                    </article>
-
                     <article className="projects-gallery-card">
                       <p className="projects-gallery-meta">Email</p>
                       <h2 className="projects-gallery-title">sid.mailconnect@gmail.com</h2>
@@ -94,26 +92,7 @@ export default function ContactPage() {
               </section>
             </div>
 
-            <aside className="hero-side" aria-label="Primary navigation">
-              <Link className="hero-side-link" style={{ "--stagger": 0 } as React.CSSProperties} href="/">
-                Home
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 1 } as React.CSSProperties} href="/work">
-                Work
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 2 } as React.CSSProperties} href="/projects">
-                Projects
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 3 } as React.CSSProperties} href="/skills">
-                Skills
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 4 } as React.CSSProperties} href="/education">
-                Education
-              </Link>
-              <Link className="hero-side-link" style={{ "--stagger": 5 } as React.CSSProperties} href="/certifications">
-                Certifications
-              </Link>
-            </aside>
+            <ScrollSideNav items={navItems} />
 
           </div>
 
