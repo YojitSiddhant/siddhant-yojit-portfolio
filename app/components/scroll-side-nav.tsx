@@ -29,12 +29,6 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
     const onScroll = () => {
       const currentY = window.scrollY;
 
-      if (!desktopQuery.matches) {
-        setIsLowered(false);
-        lastY = currentY;
-        return;
-      }
-
       if (currentY <= 80) {
         setIsLowered(false);
       } else if (currentY > lastY) {

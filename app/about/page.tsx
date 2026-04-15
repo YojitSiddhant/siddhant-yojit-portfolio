@@ -12,6 +12,8 @@ const interests = [
   { emoji: "🚆", label: "Railways and train systems" },
   { emoji: "🏏", label: "Cricket" },
   { emoji: "🎵", label: "Music" },
+  { emoji: "🎮", label: "Playing video games" },
+  { emoji: "🎬", label: "Watching movies" },
 ];
 
 const navItems = [
