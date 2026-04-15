@@ -14,6 +14,7 @@ const interests = [
   { emoji: "🎵", label: "Music" },
   { emoji: "🎮", label: "Playing video games" },
   { emoji: "🎬", label: "Watching movies" },
+  { emoji: "✈️", label: "Travelling" },
 ];
 
 const navItems = [
@@ -61,7 +62,7 @@ export default function AboutPage() {
                     {interests.map((item, index) => (
                       <span
                         key={item.label}
-                        className={`skill-chip text-center ${index === interests.length - 1 ? "col-span-2 justify-self-center max-sm:col-span-1" : ""}`}
+                        className={`skill-chip text-center ${interests.length % 2 === 1 && index === interests.length - 1 ? "col-span-2 justify-self-center max-sm:col-span-1" : ""}`}
                       >
                         <span aria-hidden="true">{item.emoji}</span> {item.label}
                       </span>

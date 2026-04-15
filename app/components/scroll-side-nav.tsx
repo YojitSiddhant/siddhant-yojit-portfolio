@@ -18,16 +18,26 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
 
   useEffect(() => {
     let lastY = window.scrollY;
+    const floatingQuery = window.matchMedia("(min-width: 641px)");
     const desktopQuery = window.matchMedia("(min-width: 769px) and (min-height: 641px)");
 
     const updateDesktop = () => {
       setIsDesktop(desktopQuery.matches);
+      if (!floatingQuery.matches) {
+        setIsLowered(false);
+      }
     };
 
     updateDesktop();
 
     const onScroll = () => {
       const currentY = window.scrollY;
+
+      if (!floatingQuery.matches) {
+        setIsLowered(false);
+        lastY = currentY;
+        return;
+      }
 
       if (currentY <= 80) {
         setIsLowered(false);
@@ -40,9 +50,11 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
       lastY = currentY;
     };
 
-    if (desktopQuery.addEventListener) {
+    if (floatingQuery.addEventListener) {
+      floatingQuery.addEventListener("change", updateDesktop);
       desktopQuery.addEventListener("change", updateDesktop);
     } else {
+      floatingQuery.addListener(updateDesktop);
       desktopQuery.addListener(updateDesktop);
     }
 
@@ -50,9 +62,11 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
     return () => {
       window.removeEventListener("scroll", onScroll);
 
-      if (desktopQuery.removeEventListener) {
+      if (floatingQuery.removeEventListener) {
+        floatingQuery.removeEventListener("change", updateDesktop);
         desktopQuery.removeEventListener("change", updateDesktop);
       } else {
+        floatingQuery.removeListener(updateDesktop);
         desktopQuery.removeListener(updateDesktop);
       }
     };
