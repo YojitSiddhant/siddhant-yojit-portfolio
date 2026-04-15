@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type NavItem = {
   href: string;
@@ -15,39 +15,56 @@ type ScrollSideNavProps = {
 export default function ScrollSideNav({ items }: ScrollSideNavProps) {
   const [isLowered, setIsLowered] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const isLoweredRef = useRef(false);
 
   useEffect(() => {
     let lastY = window.scrollY;
+    let scrollFrame = 0;
     const floatingQuery = window.matchMedia("(min-width: 641px)");
     const desktopQuery = window.matchMedia("(min-width: 769px) and (min-height: 641px)");
+    const updateLowered = (nextValue: boolean) => {
+      if (isLoweredRef.current === nextValue) {
+        return;
+      }
+
+      isLoweredRef.current = nextValue;
+      setIsLowered(nextValue);
+    };
 
     const updateDesktop = () => {
       setIsDesktop(desktopQuery.matches);
       if (!floatingQuery.matches) {
-        setIsLowered(false);
+        updateLowered(false);
       }
     };
 
     updateDesktop();
 
     const onScroll = () => {
-      const currentY = window.scrollY;
-
-      if (!floatingQuery.matches) {
-        setIsLowered(false);
-        lastY = currentY;
+      if (scrollFrame) {
         return;
       }
 
-      if (currentY <= 80) {
-        setIsLowered(false);
-      } else if (currentY > lastY) {
-        setIsLowered(true);
-      } else {
-        setIsLowered(false);
-      }
+      scrollFrame = window.requestAnimationFrame(() => {
+        scrollFrame = 0;
+        const currentY = window.scrollY;
 
-      lastY = currentY;
+        if (!floatingQuery.matches) {
+          updateLowered(false);
+          lastY = currentY;
+          return;
+        }
+
+        if (currentY <= 80) {
+          updateLowered(false);
+        } else if (currentY > lastY) {
+          updateLowered(true);
+        } else {
+          updateLowered(false);
+        }
+
+        lastY = currentY;
+      });
     };
 
     if (floatingQuery.addEventListener) {
@@ -61,6 +78,9 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      if (scrollFrame) {
+        window.cancelAnimationFrame(scrollFrame);
+      }
 
       if (floatingQuery.removeEventListener) {
         floatingQuery.removeEventListener("change", updateDesktop);
@@ -93,7 +113,7 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
       ? ({
           position: "fixed",
           top: "52svh",
-          right: "0.75rem",
+          right: "1.25rem",
           bottom: "auto",
           left: "auto",
           zIndex: 50,
