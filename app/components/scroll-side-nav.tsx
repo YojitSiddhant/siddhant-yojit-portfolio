@@ -88,10 +88,28 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
       } satisfies React.CSSProperties)
     : undefined;
 
+  const tabletLoweredStyle =
+    !isDesktop && isLowered
+      ? ({
+          position: "fixed",
+          top: "52svh",
+          right: "0.75rem",
+          bottom: "auto",
+          left: "auto",
+          zIndex: 50,
+          flexDirection: "column",
+          flexWrap: "nowrap",
+          alignItems: "flex-end",
+          justifyContent: "flex-start",
+          marginTop: 0,
+          transform: "none",
+        } satisfies React.CSSProperties)
+      : undefined;
+
   return (
     <aside
       className={`hero-side${isLowered ? " hero-side-lowered" : ""}`}
-      style={desktopStyle}
+      style={desktopStyle ?? tabletLoweredStyle}
       aria-label="Primary navigation"
     >
       {items.map((item, index) => (
