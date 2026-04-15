@@ -14,7 +14,7 @@ const interests = [
   { emoji: "🎵", label: "Music" },
   { emoji: "🎮", label: "Playing video games" },
   { emoji: "🎬", label: "Watching movies" },
-  { emoji: "✈️", label: "Travelling" },
+  { emoji: "🌍", label: "Travelling" },
 ];
 
 const navItems = [
@@ -58,13 +58,16 @@ export default function AboutPage() {
 
                 <section className="work-home-section work-animated-card">
                   <p className="work-home-label">Hobbies And Interests</p>
-                  <div className="mt-4 grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+                  <div className="hobbies-grid">
                     {interests.map((item, index) => (
                       <span
                         key={item.label}
-                        className={`skill-chip text-center ${interests.length % 2 === 1 && index === interests.length - 1 ? "col-span-2 justify-self-center max-sm:col-span-1" : ""}`}
+                        className={`skill-chip hobby-chip ${interests.length % 2 === 1 && index === interests.length - 1 ? "hobby-chip-centered" : ""}`}
                       >
-                        <span aria-hidden="true">{item.emoji}</span> {item.label}
+                        <span className="hobby-icon" aria-hidden="true">
+                          {item.emoji}
+                        </span>
+                        <span>{item.label}</span>
                       </span>
                     ))}
                   </div>

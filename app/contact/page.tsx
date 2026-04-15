@@ -79,7 +79,7 @@ export default function ContactPage() {
                           target="_blank"
                           rel="noreferrer noopener"
                           aria-label="Open GitHub profile"
-                          className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition hover:-translate-y-1 hover:border-[rgba(241,196,15,0.45)] hover:bg-[rgba(241,196,15,0.08)] hover:text-[#f1c40f]"
+                          className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[var(--heading)] transition hover:-translate-y-1 hover:border-[rgba(var(--accent-rgb),0.45)] hover:bg-[rgba(var(--accent-rgb),0.08)] hover:text-[var(--accent)]"
                         >
                           <svg viewBox="0 0 24 24" aria-hidden="true" className="h-8 w-8 fill-current">
                             <path d="M12 2C6.477 2 2 6.596 2 12.264c0 4.534 2.865 8.38 6.839 9.738.5.096.682-.223.682-.495 0-.245-.008-.893-.013-1.752-2.782.62-3.369-1.4-3.369-1.4-.455-1.185-1.11-1.5-1.11-1.5-.908-.636.069-.623.069-.623 1.004.073 1.532 1.055 1.532 1.055.892 1.566 2.341 1.114 2.91.852.091-.664.349-1.115.635-1.372-2.22-.26-4.555-1.14-4.555-5.074 0-1.121.39-2.038 1.03-2.756-.103-.261-.447-1.31.097-2.73 0 0 .84-.277 2.75 1.053A9.303 9.303 0 0 1 12 6.836a9.27 9.27 0 0 1 2.504.348c1.909-1.33 2.747-1.053 2.747-1.053.546 1.42.202 2.469.1 2.73.64.718 1.028 1.635 1.028 2.756 0 3.944-2.339 4.811-4.566 5.066.359.319.678.948.678 1.911 0 1.379-.012 2.49-.012 2.829 0 .274.18.595.688.494C19.138 20.64 22 16.796 22 12.264 22 6.596 17.523 2 12 2Z" />

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
+
+const textFont = Inter({
+  variable: "--font-text",
+  subsets: ["latin"],
+});
 
 const displayFont = Space_Grotesk({
   variable: "--font-display",
@@ -32,9 +38,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${displayFont.variable} ${monoFont.variable} h-full antialiased`}
+      className={`${textFont.variable} ${displayFont.variable} ${monoFont.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeToggle />
+        {children}
+      </body>
     </html>
   );
 }

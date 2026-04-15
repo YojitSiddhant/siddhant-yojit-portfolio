@@ -16,6 +16,50 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
   const [isLowered, setIsLowered] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const isLoweredRef = useRef(false);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const lastTukRef = useRef(0);
+
+  const playTukTuk = () => {
+    const now = window.performance.now();
+    if (now - lastTukRef.current < 140) {
+      return;
+    }
+
+    lastTukRef.current = now;
+    const AudioContextClass = window.AudioContext;
+    const audioContext = audioContextRef.current ?? new AudioContextClass();
+    audioContextRef.current = audioContext;
+
+    const startSound = () => {
+      const baseTime = audioContext.currentTime;
+
+      [0, 0.075].forEach((offset, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        const start = baseTime + offset;
+        const end = start + 0.045;
+
+        oscillator.type = "triangle";
+        oscillator.frequency.setValueAtTime(index === 0 ? 210 : 175, start);
+        oscillator.frequency.exponentialRampToValueAtTime(index === 0 ? 105 : 88, end);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(0.08, start + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, end);
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+        oscillator.start(start);
+        oscillator.stop(end);
+      });
+    };
+
+    if (audioContext.state === "suspended") {
+      void audioContext.resume().then(startSound).catch(() => undefined);
+      return;
+    }
+
+    startSound();
+  };
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -138,6 +182,8 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
           className="hero-side-link"
           style={{ "--stagger": index } as React.CSSProperties}
           href={item.href}
+          onFocus={playTukTuk}
+          onPointerEnter={playTukTuk}
         >
           {item.label}
         </Link>

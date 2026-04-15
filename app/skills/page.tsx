@@ -6,13 +6,13 @@ const skills = [
   { name: "CSS", logo: "https://cdn.simpleicons.org/css/1572B6", alt: "CSS logo" },
   { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript/F7DF1E", alt: "JavaScript logo" },
   { name: "React", logo: "https://cdn.simpleicons.org/react/61DAFB", alt: "React logo" },
-  { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs/FFFFFF", alt: "Next.js logo" },
+  { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs/FFFFFF", alt: "Next.js logo", tone: "mono" },
   { name: "Angular", logo: "https://cdn.simpleicons.org/angular/DD0031", alt: "Angular logo" },
   { name: "Mongo DB", logo: "https://cdn.simpleicons.org/mongodb/47A248", alt: "MongoDB logo" },
   { name: "Flutter", logo: "https://cdn.simpleicons.org/flutter/02569B", alt: "Flutter logo" },
   { name: "SQLite", logo: "https://cdn.simpleicons.org/sqlite/003B57", alt: "SQLite logo" },
   { name: "SQL", logo: "https://cdn.simpleicons.org/databricks/FF3621", alt: "Database icon for SQL" },
-  { name: "GitHub", logo: "https://cdn.simpleicons.org/github/FFFFFF", alt: "GitHub logo" },
+  { name: "GitHub", logo: "https://cdn.simpleicons.org/github/FFFFFF", alt: "GitHub logo", tone: "mono" },
 ];
 
 const toolsAndTesting = [
@@ -59,7 +59,11 @@ export default function SkillsPage() {
                     {skills.map((skill) => (
                       <article key={skill.name} className="skills-single-card">
                         <span className="skills-logo-badge" aria-hidden="true">
-                          <img className="skills-logo-image" src={skill.logo} alt={skill.alt} />
+                          <img
+                            className={`skills-logo-image${skill.tone === "mono" ? " skills-logo-image-mono" : ""}`}
+                            src={skill.logo}
+                            alt={skill.alt}
+                          />
                         </span>
                         <span className="skills-single-name">{skill.name}</span>
                       </article>

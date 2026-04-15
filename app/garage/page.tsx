@@ -29,12 +29,12 @@ export default function GaragePage() {
       <section className="subpage-grid single-column">
         {education.map((item) => (
           <article key={item.degree} className="panel">
-            <p className="font-[family-name:var(--font-display)] text-2xl text-white">{item.degree}</p>
+            <p className="font-[family-name:var(--font-display)] text-2xl text-[var(--heading)]">{item.degree}</p>
             <p className="mt-2 text-[var(--soft)]">{item.school}</p>
-            <p className="mt-4 font-mono text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
+            <p className="mt-4 font-mono text-xs uppercase tracking-normal text-[var(--muted)]">
               {item.period}
             </p>
-            <p className="mt-2 text-[#f1c40f]">{item.note}</p>
+            <p className="mt-2 text-[var(--accent)]">{item.note}</p>
           </article>
         ))}
       </section>
