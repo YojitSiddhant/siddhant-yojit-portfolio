@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
 
 const textFont = Inter({
@@ -42,7 +41,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ThemeToggle />
         {children}
       </body>
     </html>

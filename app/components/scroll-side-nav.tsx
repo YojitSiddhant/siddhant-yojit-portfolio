@@ -15,6 +15,8 @@ type ScrollSideNavProps = {
 export default function ScrollSideNav({ items }: ScrollSideNavProps) {
   const [isLowered, setIsLowered] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobileMenu, setIsMobileMenu] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isLoweredRef = useRef(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const lastTukRef = useRef(0);
@@ -66,6 +68,7 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
     let scrollFrame = 0;
     const floatingQuery = window.matchMedia("(min-width: 641px)");
     const desktopQuery = window.matchMedia("(min-width: 769px) and (min-height: 641px)");
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
     const updateLowered = (nextValue: boolean) => {
       if (isLoweredRef.current === nextValue) {
         return;
@@ -77,6 +80,11 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
 
     const updateDesktop = () => {
       setIsDesktop(desktopQuery.matches);
+      setIsMobileMenu(mobileQuery.matches);
+      if (!mobileQuery.matches) {
+        setIsMenuOpen(false);
+      }
+
       if (!floatingQuery.matches) {
         updateLowered(false);
       }
@@ -114,14 +122,24 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
     if (floatingQuery.addEventListener) {
       floatingQuery.addEventListener("change", updateDesktop);
       desktopQuery.addEventListener("change", updateDesktop);
+      mobileQuery.addEventListener("change", updateDesktop);
     } else {
       floatingQuery.addListener(updateDesktop);
       desktopQuery.addListener(updateDesktop);
+      mobileQuery.addListener(updateDesktop);
     }
 
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKeyDown);
       if (scrollFrame) {
         window.cancelAnimationFrame(scrollFrame);
       }
@@ -129,9 +147,11 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
       if (floatingQuery.removeEventListener) {
         floatingQuery.removeEventListener("change", updateDesktop);
         desktopQuery.removeEventListener("change", updateDesktop);
+        mobileQuery.removeEventListener("change", updateDesktop);
       } else {
         floatingQuery.removeListener(updateDesktop);
         desktopQuery.removeListener(updateDesktop);
+        mobileQuery.removeListener(updateDesktop);
       }
     };
   }, []);
@@ -153,7 +173,7 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
     : undefined;
 
   const tabletLoweredStyle =
-    !isDesktop && isLowered
+    !isDesktop && !isMobileMenu && isLowered
       ? ({
           position: "fixed",
           top: "52svh",
@@ -172,22 +192,43 @@ export default function ScrollSideNav({ items }: ScrollSideNavProps) {
 
   return (
     <aside
-      className={`hero-side${isLowered ? " hero-side-lowered" : ""}`}
+      className={`hero-side${isLowered ? " hero-side-lowered" : ""}${isMenuOpen ? " hero-side-open" : ""}`}
       style={desktopStyle ?? tabletLoweredStyle}
       aria-label="Primary navigation"
     >
-      {items.map((item, index) => (
-        <Link
-          key={item.href}
-          className="hero-side-link"
-          style={{ "--stagger": index } as React.CSSProperties}
-          href={item.href}
-          onFocus={playTukTuk}
-          onPointerEnter={playTukTuk}
-        >
-          {item.label}
-        </Link>
-      ))}
+      <button
+        className="hero-menu-button"
+        type="button"
+        aria-controls="primary-navigation-links"
+        aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={isMenuOpen}
+        onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
+      >
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+      </button>
+
+      <div
+        className="hero-side-links"
+        id="primary-navigation-links"
+        aria-hidden={isMobileMenu && !isMenuOpen}
+      >
+        {items.map((item, index) => (
+          <Link
+            key={item.href}
+            className="hero-side-link"
+            style={{ "--stagger": index } as React.CSSProperties}
+            href={item.href}
+            tabIndex={isMobileMenu && !isMenuOpen ? -1 : undefined}
+            onClick={() => setIsMenuOpen(false)}
+            onFocus={playTukTuk}
+            onPointerEnter={playTukTuk}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
     </aside>
   );
 }
