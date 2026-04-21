@@ -9,7 +9,7 @@ type NavItem = {
 };
 
 type ScrollSideNavProps = {
-  items: NavItem[];
+  items: readonly NavItem[];
 };
 
 export default function ScrollSideNav({ items }: ScrollSideNavProps) {
