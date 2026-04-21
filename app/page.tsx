@@ -1,16 +1,7 @@
 import HomeClock from "./components/home-clock";
 import ScrollSideNav from "./components/scroll-side-nav";
 import TypewriterName from "./components/typewriter-name";
-
-const navItems = [
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/contact", label: "Contact" },
-];
+import { homeNavItems } from "./lib/navigation";
 
 export default function Home() {
   return (
@@ -30,7 +21,7 @@ export default function Home() {
               <HomeClock />
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={homeNavItems} />
 
           </div>
         </section>

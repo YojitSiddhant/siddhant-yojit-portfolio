@@ -1,4 +1,5 @@
 import ScrollSideNav from "../components/scroll-side-nav";
+import { secondaryNavItems } from "../lib/navigation";
 
 const highlights = [
   "Frontend Developer with internship experience building responsive interfaces and translating business requirements into production-ready UI.",
@@ -15,16 +16,6 @@ const interests = [
   { emoji: "🎮", label: "Playing video games" },
   { emoji: "🎬", label: "Watching movies" },
   { emoji: "🌍", label: "Travelling" },
-];
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function AboutPage() {
@@ -75,7 +66,7 @@ export default function AboutPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
           </div>
 
           <footer className="page-footer">

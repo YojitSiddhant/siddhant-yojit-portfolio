@@ -1,5 +1,6 @@
 import ProjectsGallery from "../components/projects-gallery";
 import ScrollSideNav from "../components/scroll-side-nav";
+import { secondaryNavItems } from "../lib/navigation";
 
 const projects = [
   {
@@ -44,16 +45,6 @@ const projects = [
   },
 ];
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/contact", label: "Contact" },
-];
-
 export default function ProjectsPage() {
   return (
     <main className="home-shell relative overflow-hidden text-[var(--foreground)]">
@@ -76,7 +67,7 @@ export default function ProjectsPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
 
           </div>
 

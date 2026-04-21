@@ -1,4 +1,5 @@
 import ScrollSideNav from "../components/scroll-side-nav";
+import { secondaryNavItems } from "../lib/navigation";
 
 const education = [
   {
@@ -29,16 +30,6 @@ const education = [
     location: "Bangalore, Karnataka, India",
     notes: [],
   },
-];
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function EducationPage() {
@@ -82,7 +73,7 @@ export default function EducationPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
 
           </div>
 

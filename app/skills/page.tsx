@@ -1,5 +1,6 @@
 import ExtraSkillsPopup from "../components/extra-skills-popup";
 import ScrollSideNav from "../components/scroll-side-nav";
+import { secondaryNavItems } from "../lib/navigation";
 
 const skills = [
   { name: "HTML", logo: "https://cdn.simpleicons.org/html5/E34F26", alt: "HTML5 logo" },
@@ -25,16 +26,6 @@ const professionalSkills = [
   "Problem Solving",
   "Team Collaboration",
   "Adaptability",
-];
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/projects", label: "Projects" },
-  { href: "/education", label: "Education" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function SkillsPage() {
@@ -80,7 +71,7 @@ export default function SkillsPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
 
           </div>
 

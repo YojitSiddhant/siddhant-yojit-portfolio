@@ -1,4 +1,5 @@
 import ScrollSideNav from "../components/scroll-side-nav";
+import { secondaryNavItems } from "../lib/navigation";
 
 const experience = {
   role: "UI Developer Intern",
@@ -13,16 +14,6 @@ const experience = {
     "Support software testing by writing test cases, validating UI behavior across key flows, identifying visual and functional issues, and reporting defects for resolution.",
   ],
 };
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/contact", label: "Contact" },
-];
 
 export default function WorkPage() {
   return (
@@ -58,7 +49,7 @@ export default function WorkPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
 
           </div>
 

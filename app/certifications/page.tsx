@@ -1,4 +1,5 @@
 import ScrollSideNav from "../components/scroll-side-nav";
+import { secondaryNavItems } from "../lib/navigation";
 
 const certificates = [
   {
@@ -32,16 +33,6 @@ const certificates = [
     subject: "Frontend web development fundamentals",
   },
 ] as const;
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/contact", label: "Contact" },
-];
 
 export default function CertificationsPage() {
   return (
@@ -77,7 +68,7 @@ export default function CertificationsPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
 
           </div>
 

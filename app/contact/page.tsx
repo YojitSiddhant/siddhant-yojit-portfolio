@@ -1,14 +1,5 @@
 import ScrollSideNav from "../components/scroll-side-nav";
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/certifications", label: "Certifications" },
-];
+import { secondaryNavItems } from "../lib/navigation";
 
 export default function ContactPage() {
   return (
@@ -92,7 +83,7 @@ export default function ContactPage() {
               </section>
             </div>
 
-            <ScrollSideNav items={navItems} />
+            <ScrollSideNav items={secondaryNavItems} />
 
           </div>
 
