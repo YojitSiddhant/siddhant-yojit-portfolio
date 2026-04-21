@@ -80,20 +80,14 @@ export default function MyWorkPage() {
                         <h2 className="projects-gallery-title">{work.title}</h2>
                         <p className="projects-gallery-stack">{work.stack}</p>
                         <div className="mt-6 flex flex-wrap items-center gap-3">
-                          {work.href ? (
-                            <a
-                              href={work.href}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              className="inline-flex items-center rounded-full border border-[rgba(var(--accent-rgb),0.28)] bg-[rgba(var(--accent-rgb),0.12)] px-4 py-2 text-sm font-medium text-[var(--accent)] transition hover:-translate-y-0.5 hover:border-[rgba(var(--accent-rgb),0.48)] hover:bg-[rgba(var(--accent-rgb),0.18)]"
-                            >
-                              {work.cta}
-                            </a>
-                          ) : (
-                            <span className="inline-flex rounded-full border border-[rgba(var(--accent-rgb),0.28)] bg-[rgba(var(--accent-rgb),0.1)] px-3 py-1 text-xs font-medium uppercase tracking-[0.02em] text-[var(--accent)]">
-                              {work.cta}
-                            </span>
-                          )}
+                          <a
+                            href={work.href}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="inline-flex items-center rounded-full border border-[rgba(var(--accent-rgb),0.28)] bg-[rgba(var(--accent-rgb),0.12)] px-4 py-2 text-sm font-medium text-[var(--accent)] transition hover:-translate-y-0.5 hover:border-[rgba(var(--accent-rgb),0.48)] hover:bg-[rgba(var(--accent-rgb),0.18)]"
+                          >
+                            {work.cta}
+                          </a>
                         </div>
                       </article>
                     ))}
