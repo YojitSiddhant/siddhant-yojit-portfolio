@@ -1,4 +1,5 @@
 import HomeClock from "./components/home-clock";
+import HomeTerminal from "./components/home-terminal";
 import ScrollSideNav from "./components/scroll-side-nav";
 import TypewriterName from "./components/typewriter-name";
 import { homeNavItems } from "./lib/navigation";
@@ -22,6 +23,8 @@ export default function Home() {
             </div>
 
             <ScrollSideNav items={homeNavItems} />
+
+            <HomeTerminal />
 
           </div>
         </section>

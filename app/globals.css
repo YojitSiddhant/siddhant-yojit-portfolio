@@ -178,6 +178,182 @@ a:focus-visible {
   animation-delay: 120ms;
 }
 
+.home-terminal {
+  position: absolute;
+  left: 50%;
+  bottom: 1.75rem;
+  z-index: 8;
+  width: min(42rem, calc(100vw - 8rem));
+  transform: translateX(-50%);
+  animation: hero-fade-up 760ms var(--ease-out) both;
+  animation-delay: 220ms;
+}
+
+.home-terminal-window {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 1.4rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(11, 10, 9, 0.9)),
+    rgba(13, 12, 11, 0.9);
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.home-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.home-terminal-dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+}
+
+.home-terminal-dot-close {
+  background: #fb7185;
+}
+
+.home-terminal-dot-minimize {
+  background: #f59e0b;
+}
+
+.home-terminal-dot-expand {
+  background: #22c55e;
+}
+
+.home-terminal-title {
+  margin-left: 0.35rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.home-terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1rem 0.45rem;
+}
+
+.home-terminal-prompt {
+  flex: 0 0 auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.92rem;
+  color: var(--accent-soft);
+}
+
+.home-terminal-input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.home-terminal-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.home-terminal-hint {
+  padding: 0 1rem 1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.home-terminal-hint span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.home-terminal-output {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 0;
+  padding: 0 1rem;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height var(--motion-medium) var(--ease-out),
+    opacity var(--motion-medium) ease,
+    padding-bottom var(--motion-medium) ease;
+}
+
+.home-terminal-output.is-visible {
+  max-height: 18rem;
+  padding-bottom: 1rem;
+  opacity: 1;
+}
+
+.home-terminal-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.home-terminal-prefix {
+  color: var(--accent);
+}
+
+.home-terminal-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.15rem;
+}
+
+.home-terminal-option {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.76);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  transition:
+    transform var(--motion-fast) var(--ease-spring),
+    border-color var(--motion-fast) ease,
+    background var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.home-terminal-option:hover,
+.home-terminal-option.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(var(--accent-rgb), 0.38);
+  background: rgba(var(--accent-rgb), 0.12);
+  color: #fff2e8;
+}
+
+.home-terminal-line-detail {
+  margin-top: 0.1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.home-terminal-line-detail span:last-child {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
 .hero-kicker {
   margin-top: 1.5rem;
   max-width: 22rem;
@@ -1806,8 +1982,56 @@ a:focus-visible {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+  .hero-frame {
+    min-height: auto;
+    height: auto;
+  }
+
   .hero-stage {
     width: min(100%, calc(100vw - 2rem));
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-copy {
+    position: static;
+    max-width: min(42rem, 100%);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-kicker,
+  .hero-intro {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero-name {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-name-text {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .hero-center {
+    position: static;
+    display: block;
+    padding: 2rem 0 0;
+  }
+
+  .home-terminal {
+    position: static;
+    left: auto;
+    bottom: auto;
+    width: min(100%, 38rem);
+    margin: 1.5rem auto 0;
+    transform: none;
   }
 
   .work-page-stage {
@@ -1884,6 +2108,15 @@ a:focus-visible {
     padding: 2rem 0 0;
   }
 
+  .home-terminal {
+    position: static;
+    left: auto;
+    bottom: auto;
+    width: min(100%, 34rem);
+    margin: 1.5rem auto 0;
+    transform: none;
+  }
+
   .hero-side {
     position: static;
     top: auto;
@@ -1942,6 +2175,11 @@ a:focus-visible {
 
   .clock-grid {
     gap: 0.8rem;
+  }
+
+  .home-terminal {
+    width: min(100%, 34rem);
+    margin-top: 1.75rem;
   }
 
   .work-home-content {
@@ -2089,6 +2327,32 @@ a:focus-visible {
   .hero-social-link {
     width: 2.7rem;
     height: 2.7rem;
+  }
+
+  .home-terminal {
+    width: min(100%, calc(100vw - 1.25rem));
+    margin-top: 1.25rem;
+  }
+
+  .home-terminal-input-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .home-terminal-prompt,
+  .home-terminal-input,
+  .home-terminal-line {
+    font-size: 0.76rem;
+  }
+
+  .home-terminal-output.is-visible {
+    max-height: 22rem;
+  }
+
+  .home-terminal-option {
+    font-size: 0.68rem;
+    padding: 0.42rem 0.65rem;
   }
 
   .clock-panel {
@@ -2254,6 +2518,29 @@ a:focus-visible {
     border-radius: 16px;
   }
 
+  .home-terminal {
+    width: min(100%, calc(100vw - 1rem));
+  }
+
+  .home-terminal-window {
+    border-radius: 1.15rem;
+  }
+
+  .home-terminal-bar {
+    padding-inline: 0.8rem;
+  }
+
+  .home-terminal-input-row,
+  .home-terminal-hint,
+  .home-terminal-output {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+
+  .home-terminal-output.is-visible {
+    max-height: 24rem;
+  }
+
 }
 
 @media (max-height: 640px) {
@@ -2284,6 +2571,13 @@ a:focus-visible {
     position: static;
     transform: none;
     margin-top: 1.25rem;
+  }
+
+  .home-terminal {
+    position: static;
+    width: min(100%, 34rem);
+    margin: 1.25rem auto 0;
+    transform: none;
   }
 
   .work-page-stage {
